@@ -1,0 +1,31 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=0")
+		title 用户绑定
+		link(href="http://cdn.bootcss.com/weui/0.4.2/style/weui.css",rel="stylesheet")
+		link(href="http://115.28.226.162/style.css",rel="stylesheet")
+	body
+		.login_title
+			span 绑定用户
+		form(method="post",action="/ecard/#{openId}/login")
+			.weui_cells_title 绑定用户
+			.weui_cells.weui_cells_form
+				.weui_cell
+					.weui_cell_hd
+						.weui_label
+							img(src="http://115.28.226.162/name.png")
+					.weui_cell_bd.weu_cell_primary
+						input(class="weui_input" name="account" type="text" placeholder="请在此输入学号" )
+				.weui_cell
+					.weui_cell_hd
+						.weui_label
+							img(src="http://115.28.226.162/id.png")
+					.weui_cell_bd.weui_cell_primary
+						input(class="weui_input" name="password" type="password" placeholder="请在此输入密码" )
+			.weui_btn_area
+				button(class="weui_btn weui_btn_primary" id="button" type="submit" href="javascript:") 绑定
+	//- script(src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+	//- script(src="http://rawgit.com/progrape/weui.js/master/dist/weui.js")
+	//- script(src="/js/example.js")

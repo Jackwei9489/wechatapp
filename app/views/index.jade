@@ -1,0 +1,32 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=0")
+		title 四六级查询
+		link(href="http://cdn.bootcss.com/weui/0.4.2/style/weui.css",rel="stylesheet")
+		link(href="http://115.28.226.162/style.css",rel="stylesheet")
+	body
+		.login_title
+			span 四六级查询
+		form(method="post",action="/ecard/cet46/query")
+			.weui_cells_title 四六级成绩查询
+			.weui_cells.weui_cells_form
+				.weui_cell
+					.weui_cell_hd
+						.weui_label
+							img(src="http://115.28.226.162/name.png")
+					.weui_cell_bd.weu_cell_primary
+						input(class="weui_input" name="xm" type="text" placeholder="请在此输入姓名" )
+				.weui_cell
+					.weui_cell_hd
+						.weui_label
+							img(src="http://115.28.226.162/id.png")
+					.weui_cell_bd.weui_cell_primary
+						input(class="weui_input" name="zkzh" type="text" placeholder="请在此输入准考证号" )
+			p(class="weui_cells_tips") 注意：若当前人数过多，请稍后再试
+			.weui_btn_area
+				button(class="weui_btn weui_btn_primary" id="button" type="submit" href="javascript:") 一键查询
+	script(src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+	script(src="http://rawgit.com/progrape/weui.js/master/dist/weui.js")
+	script(src="http://115.28.226.162/example.js")

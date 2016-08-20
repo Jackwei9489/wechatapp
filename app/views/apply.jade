@@ -1,0 +1,151 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=0")
+		title 招新申请表
+		link(href="http://cdn.bootcss.com/weui/0.4.2/style/weui.css",rel="stylesheet")
+		style.
+			.title{
+				width:auto;
+				height: 100px;
+				font-size: 32px;
+				padding-top: 10px;
+				text-align: center;
+				color: #10e61a;
+			}
+
+	body
+		.title
+			span 计算机与软件学院学生组织招新报名表
+		form(action="http://www.nuisthelper.cn/ecard/student/apply" method="post")
+			.weui_cells_title 基本信息
+			.weui_cells
+				.weui_cell
+						.weui_cell_hd
+							label.weui_label 姓名
+						.weui_cell_bd.weui_cell_primary
+							input.weui_input(type="text" name="applyData[name]" placeholder="请输入您的姓名")
+				.weui_cell.weui_cell_select.weui_select_after
+						.weui_cell_hd
+							.weui_label 性别
+						.weui_cell_bd.weui_cell_primary
+							select.weui_select(name="applyData[gender]")
+								option(value="男") 男
+								option(value="女") 女
+				.weui_cell.weui_cell_select.weui_select_after
+						.weui_cell_hd
+							.weui_label 专业
+						.weui_cell_bd.weui_cell_primary
+							select.weui_select(name="applyData[major]")
+								option(value="计算机科学与技术") 计算机科学与技术
+								option(value="网络工程") 网络工程
+								option(value="软件工程") 软件工程
+								option(value="软件工程(嵌入式培养)") 软件工程（嵌入式培养)
+								option(value="软件工程(中外合作)") 软件工程（中外合作）
+								option(value="物联网工程") 物联网工程
+								option(value="物联网工程(嵌入式培养)") 物联网工程（嵌入式培养）
+				.weui_cell
+						.weui_cell_hd
+							label.weui_label 班级
+						.weui_cell_bd.weui_cell_primary
+							input.weui_input(type="text" name="applyData[class]" placeholder="请输入班级，如：1班")
+				.weui_cell
+						.weui_cell_hd
+							label.weui_label 出生年月
+						.weui_cell_bd.weui_cell_primary
+							input.weui_input(type="date" name="applyData[birth]")
+				.weui_cell.weui_cell_select.weui_select_after
+						.weui_cell_hd
+							.weui_label 政治面貌
+						.weui_cell_bd.weui_cell_primary
+							select.weui_select(name="applyData[appearance]")
+								option(value="团员") 团员
+								option(value="党员") 党员
+								option(value="群众") 群众
+				.weui_cell
+						.weui_cell_hd
+							label.weui_label 联系方式
+						.weui_cell_bd.weui_cell_primary
+							input.weui_input(type="text" name="applyData[contact]" placeholder="请输入手机号码")
+				.weui_cell
+						.weui_cell_hd
+							label.weui_label 特长爱好
+						.weui_cell_bd.weui_cell_primary
+							input.weui_input(type="text" name="applyData[hobby]" placeholder="简述特长及爱好")
+				.weui_cell
+						.weui_cell_hd
+							label.weui_label 曾获奖项
+						.weui_cell_bd.weui_cell_primary
+							input.weui_input(type="text" name="applyData[reward]" placeholder="简述自己曾获得的奖项")
+			.weui_cells_title 竞选意向
+			.weui_cells
+				.weui_cell.weui_cell_select.weui_select_after
+						.weui_cell_hd
+							.weui_label 第一志愿
+						.weui_cell_bd.weui_cell_primary
+							select.weui_select(name="applyData[dep1]")
+								option(value="宣传部") 宣传部
+								option(value="外联部") 外联部
+								option(value="学习部") 学习部
+								option(value="新闻部") 新闻部
+								option(value="心理部") 心理部
+								option(value="策划实施部") 策划实施部
+								option(value="体育部") 体育部
+								option(value="就业部") 就业部
+								option(value="文艺部") 文艺部
+								option(value="辩论队") 辩论队
+				.weui_cell.weui_cell_select.weui_select_after
+						.weui_cell_hd
+							.weui_label 第二志愿
+						.weui_cell_bd.weui_cell_primary
+							select.weui_select(name="applyData[dep2]")
+								option(value="宣传部") 宣传部
+								option(value="外联部") 外联部
+								option(value="学习部") 学习部
+								option(value="新闻部") 新闻部
+								option(value="心理部") 心理部
+								option(value="策划实施部") 策划实施部
+								option(value="体育部") 体育部
+								option(value="就业部") 就业部
+								option(value="文艺部") 文艺部
+								option(value="辩论队") 辩论队
+				.weui_cell.weui_cell_select.weui_select_after
+						.weui_cell_hd
+							.weui_label 是否服从调剂
+						.weui_cell_bd.weui_cell_primary
+							select.weui_select(name="applyData[accept]")
+								option(value="是") 是
+								option(value="否") 否
+			.weui_cells_title 个人简历
+			.weui_cells
+				.weui_cell.weui_cell_primary
+					textarea.weui_textarea(placeholder="请说一说从高中开始填起，包括起止时间、在何单位何职务" rows="3" name="applyData[resume]")
+			.weui_cells_title 个人优缺点
+			.weui_cells
+				.weui_cell.weui_cell_primary
+					textarea.weui_textarea(placeholder="谈谈自己认为自身的优缺点" rows="3" name="applyData[strength]")
+			.weui_cells_title 选择加入部门的原因
+			.weui_cells
+				.weui_cell.weui_cell_primary
+					textarea.weui_textarea(placeholder="谈谈自己为什么自己在众多部门中选择了这个" rows="3" name="applyData[reason]")
+			.weui_cells_title 对竞选部门的认识
+			.weui_cells
+				.weui_cell.weui_cell_primary
+					textarea.weui_textarea(placeholder="谈谈自己对在此部门中的认识" rows="3" name="applyData[knowledge]")
+			.weui_cells_title 对竞选部门的态度
+			.weui_cells
+				.weui_cell.weui_cell_primary
+					textarea.weui_textarea(placeholder="谈谈自己今后在此部门中秉持的处事态度" rows="3" name="applyData[attitude]")
+			.weui_cells_tips 请仔细填写以上信息，并注意以下几点：
+			.weui_cells_tips 1、填写此报名表务必书写认真，内容真实
+			.weui_cells_tips 2、每人限报一个组织，同一组织中，可以填写两个志愿部门
+			.weui_cells_tips 3、填写竞选组织及竞选部门时务必填写全称：如“竞选组织：学生会”，“竞选部门：策划实施部”
+			br
+			.weui_btn_area
+				button.weui_btn.weui_btn_disabled.weui_btn_default(type="submit" disabled="disabled") 尽请期待
+
+
+
+
+

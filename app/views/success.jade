@@ -1,0 +1,63 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=0")
+		title 查询结果
+		link(href="http://cdn.bootcss.com/weui/0.4.2/style/weui.css",rel="stylesheet")
+		link(href="http://cdn.bootcss.com/bootswatch/3.3.7/cerulean/bootstrap.min.css",rel="stylesheet")
+		link(href="http://115.28.226.162/style.css",rel="stylesheet")		
+	body
+		.container
+			table(class="table table-bordered")
+				caption(class="login_title") 查询结果
+				tbody
+					tr
+						td(style="text-align:right;") 姓名：
+						td(style="text-align:left;") #{resultData.name}
+					tr
+						td(style="text-align:right;") 学校：
+						td(style="text-align:left;") #{resultData.school}
+					tr
+						td(style="text-align:right;") 考试类别：
+						td(style="text-align:left;") #{resultData.type}
+					tr
+						td(style="text-align:right;") 准考证号：
+						td(style="text-align:left;") #{resultData.number}
+					tr
+						td(style="text-align:right;") 考试时间：
+						td(style="text-align:left;") #{resultData.year}
+					tr
+						td(style="text-align:right;") 总分：
+						td(style="text-align:left; color:red") #{resultData.totalScore}
+					tr
+						td(style="text-align:right;") 听力：
+						td(style="text-align:left;") #{resultData.listening}
+					tr
+						td(style="text-align:right;") 阅读：
+						td(style="text-align:left;") #{resultData.reading}
+					tr
+						td(style="text-align:right;") 写作与翻译：
+						td(style="text-align:left;") #{resultData.writingAndTranslation}
+			.row
+				.col-xs-3
+					img(src="http://115.28.226.162/smile.png" class="img")
+				.col-xs-9.message.col-xs-pull-1
+					if resultData.totalScore <= 325 
+						p 差的有点多啊，下次努力吧
+					else if resultData.totalScore >= 325 && resultData.totalScore <= 375 
+						p 亲，这不是你的真实水平啊
+					else if resultData.totalScore >375 && resultData.totalScore <=415 
+						p 就差一点了，再加把油
+					else if resultData.totalScore >415 && resultData.totalScore <=424 
+						p 天呐，就差这么点了，下次一定能过
+					else if resultData.totalScore >=425 && resultData.totalScore <=435 
+						p 低空掠过，很强很强
+					else if resultData.totalScore >435 && resultData.totalScore <=475 
+						p 真厉害，高出不少呢
+					else if resultData.totalScore >475 
+						p 这么真厉害，你咋不上天呢
+					else 
+						p 你这是多少分啊，爸爸不认识啊
+
+
