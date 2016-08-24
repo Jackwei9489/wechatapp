@@ -1,5 +1,6 @@
 var user = require('../app/controllor/User');
 var student = require('../app/controllor/student');
+var grades = require('../app/controllor/grades')
 module.exports = function(app){
 	app.get('/ecard/cet46/index',user.index);
 	app.post('/ecard/cet46/query',user.query);
@@ -22,4 +23,7 @@ module.exports = function(app){
 
 	app.get('/ecard/student/apply/index',student.index)
 	app.post('/ecard/student/apply',student.apply)
+
+	app.post('/ecard/:openId/points',user.login,grades.get)
+	app.get('/ecard/:openId/grades',grades.index)
 }

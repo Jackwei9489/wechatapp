@@ -3,7 +3,7 @@ html
 	head
 		meta(charset="utf-8")
 		meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=0")
-		title 查询结果
+		title 执行结果
 		link(href="http://cdn.bootcss.com/weui/0.4.2/style/weui.css",rel="stylesheet")
 	body
 		.weui_msg
@@ -14,8 +14,11 @@ html
 					i(class="weui_icon_warn weui_icon_msg")
 			.weui_text_area
 				if	isSuccess
-					h2(class="weui_msg_title") 操作成功
-					p(class="weui_msg_desc") #{msg}
+					if point
+						h2(class="weui_msg_title") 您的绩点为#{point}
+					else
+						h2(class="weui_msg_title") 操作成功
+						p(class="weui_msg_desc") #{msg}
 				else
 					h2(class="weui_msg_title") 操作失败
 					p(class="weui_msg_desc") #{msg}
@@ -24,6 +27,5 @@ html
 					if isSuccess
 						a(href="javascript:WeixinJSBridge.call('closeWindow');" class="weui_btn weui_btn_primary" id="back") 确定
 					else
-						a(href="javascript:history.go(-1);" class="weui_btn weui_btn_primary" id="back") 确定
+						a(href="javascript:history.go(-1);" class="weui_btn weui_btn_warn" id="back") 确定
 	script(src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")
-	script(src="js/example.js")

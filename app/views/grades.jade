@@ -1,0 +1,29 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=0")
+		title 绩点查询
+		link(href="http://cdn.bootcss.com/weui/0.4.2/style/weui.css",rel="stylesheet")
+		link(href="http://115.28.226.162/example.css",rel="stylesheet")
+		style.
+			.weui_cells_title{
+				margin-top: 170px;
+			}
+	body
+		.page
+			.hd
+				h1.page_title 绩点查询
+				p.page_desc 可查询每学年绩点或者整体绩点
+		form(method="POST",action="/ecard/#{openId}/points")
+			.weui_cells_title 选择
+			.weui_cells
+				.weui_cell.weui_cell_select.weui_select_after
+					.weui_cell_hd(style="padding-right:20px") 学年
+					.weui_cell_bd.weui_cell_primary
+						select.weui_select(name="select")
+							option(value="ALL") 全学年平均
+							option(value="2015-2016") 2015-2016
+							option(value="2014-2015") 2014-2015
+							option(value="2013-2014") 2013-2014
+			button.weui_btn.weui_btn_primary(type="submit" style="width:80%;margin-top:70px;") 查&nbsp;&nbsp;&nbsp;询
