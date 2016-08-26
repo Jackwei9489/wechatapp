@@ -40,22 +40,40 @@ Ecard.prototype.updateMsg = function(account, password) {
     return this.login(account, password, true)
         .then(function(data) {
             console.log("39行+" + data);
-            var msg = {
-                openId: _this.openId,
-                msg: data.msg
-            };
-            Msg.update({
-                    openId: _this.openId
-                }, {
-                    "$set": {
-                        msg: data.msg,
-                        meta: {
-                            createAt: Date.now(),
-                            expireIn: Date.now() + 20 * 60 * 1000
+            if (data.success) {
+                var msg = {
+                    openId: _this.openId,
+                    msg: data.msg,
+                    isSuccess:true
+                };
+                Msg.update({
+                        openId: _this.openId
+                    }, {
+                        "$set": {
+                            msg: data.msg,
+                            meta: {
+                                createAt: Date.now(),
+                                expireIn: Date.now() + 20 * 60 * 1000
+                            }
                         }
-                    }
-                },
-                function(err, msg) {})
+                    },
+                    function(err, msg) {})
+            }else{
+                if(data.msg === '密钥加密错误'){
+                    var msg = {
+                        isSuccess: false,
+                        openId: _this.openId,
+                        msg: '密码错误，改密码啦？'
+                    };
+                }else{
+                    var msg = {
+                        isSuccess: false,
+                        openId: _this.openId,
+                        msg: '系统异常请稍后再试'
+                    };
+                }
+            }
+
             return Promise.resolve(msg);
         })
 }
@@ -66,6 +84,7 @@ Ecard.prototype.fetchMsg = function(account, password) {
             console.log("ecard.js 59行：" + msg)
             if (_this.isValidMsg(msg)) {
                 console.log('返回校验成功的msg' + msg)
+                msg.isSuccess = true;
                 return Promise.resolve(msg);
             } else {
                 console.log('返回查询不成功的msg')
@@ -104,115 +123,115 @@ Ecard.prototype.getScore = function(iPlanetDirectoryPro, pageIndex, semester) {
         })
 }
 
-Ecard.prototype.getProfile = function(iPlanetDirectoryPro,account){
+Ecard.prototype.getProfile = function(iPlanetDirectoryPro, account) {
     var url = 'http://202.195.231.13:8070/Api/Card/GetCardEaccInfo';
     var param = {
         iPlanetDirectoryPro: iPlanetDirectoryPro,
         sno: account,
         schoolCode: 'nuist'
     }
-    return util.post(url,'',param)
-        .then(function(res){
+    return util.post(url, '', param)
+        .then(function(res) {
             var data = res.text;
             return JSON.parse(data);
         })
 }
 
-Ecard.prototype.getBalance = function(iPlanetDirectoryPro){
+Ecard.prototype.getBalance = function(iPlanetDirectoryPro) {
     url = 'http://202.195.231.13:8070/Api/Card/GetCardBalance';
     var param = {
         iPlanetDirectoryPro: iPlanetDirectoryPro,
         schoolCode: 'nuist'
     }
-    return util.post(url,'',param)
-        .then(function(res){
+    return util.post(url, '', param)
+        .then(function(res) {
             var data = res.text;
             return JSON.parse(data);
         })
 }
 
-Ecard.prototype.getNotice = function(){
+Ecard.prototype.getNotice = function() {
     url = 'http://202.195.231.13:8070/Api/SynNotice/GetCardNoticeList';
     var param = {
         pageSize: 10,
         pageIndex: 1,
         schoolCode: 'nuist'
     }
-    return util.post(url,'',param)
-        .then(function(res){
+    return util.post(url, '', param)
+        .then(function(res) {
             var data = res.text;
             return JSON.parse(data);
         })
 }
 
-Ecard.prototype.transfer = function(iPlanetDirectoryPro,amount,password){
-    url='http://202.195.231.13:8070/Api/Card/BankTransfer';
+Ecard.prototype.transfer = function(iPlanetDirectoryPro, amount, password) {
+    url = 'http://202.195.231.13:8070/Api/Card/BankTransfer';
     var param = {
         amount: amount,
         password: password,
         clientType: 'Android',
-        iPlanetDirectoryPro:iPlanetDirectoryPro,
-        schoolCode:'nuist',
+        iPlanetDirectoryPro: iPlanetDirectoryPro,
+        schoolCode: 'nuist',
         toaccount: 'card'
     }
-    return util.post(url,'',param)
-        .then(function(res){
+    return util.post(url, '', param)
+        .then(function(res) {
             var data = res.text;
             return JSON.parse(data);
         })
 }
 
-Ecard.prototype.getBuilding = function(iPlanetDirectoryPro,zone){
+Ecard.prototype.getBuilding = function(iPlanetDirectoryPro, zone) {
     url = 'http://202.195.231.13:8070/Api/PowerFee/GetBuild';
     var param = {
-        xiaoqu:zone,
+        xiaoqu: zone,
         paytypecode: 'PowerFeeSims',
-        schoolCode:'nuist',
-        iPlanetDirectoryPro:iPlanetDirectoryPro
+        schoolCode: 'nuist',
+        iPlanetDirectoryPro: iPlanetDirectoryPro
     }
-    return util.post(url,'',param)
-        .then(function(res){
+    return util.post(url, '', param)
+        .then(function(res) {
             var data = res.text;
             return JSON.parse(data);
         })
 }
 
-Ecard.prototype.powerFeePay = function(iPlanetDirectoryPro,amount, xiaoqu, xiaoquname, building, buildingname, room, password){
+Ecard.prototype.powerFeePay = function(iPlanetDirectoryPro, amount, xiaoqu, xiaoquname, building, buildingname, room, password) {
     var url = 'http://202.195.231.13:8070/Api/PowerFee/DoPay';
     var param = {
         amount: amount,
         xiaoqu: xiaoqu,
-        xiaoquName : xiaoquname,
-        build:building,
-        buildName:buildingname,
-        pwd:password,
-        room:room,
+        xiaoquName: xiaoquname,
+        build: building,
+        buildName: buildingname,
+        pwd: password,
+        room: room,
         iPlanetDirectoryPro: iPlanetDirectoryPro,
         schoolCode: 'nuist',
         clientType: 'Android',
         paytypecode: 'PowerFeeSims'
     }
-    return util.post(url,'',param)
-        .then(function(res){
+    return util.post(url, '', param)
+        .then(function(res) {
             var data = res.text;
             return JSON.parse(data);
         })
 }
 
-Ecard.prototype.getPowerFeeBalance = function(xiaoqu, building, buildingname,room, iPlanetDirectoryPro){
+Ecard.prototype.getPowerFeeBalance = function(xiaoqu, building, buildingname, room, iPlanetDirectoryPro) {
     var url = 'http://202.195.231.13:8070/Api/PowerFee/GetBanlace';
     var param = {
         xiaoqu: xiaoqu,
-        build:building,
-        buildName:buildingname,
-        room:room,
+        build: building,
+        buildName: buildingname,
+        room: room,
         iPlanetDirectoryPro: iPlanetDirectoryPro,
         paytypecode: 'PowerFeeSims',
         schoolCode: 'nuist'
 
     }
-    return util.post(url,'',param)
-        .then(function(res){
+    return util.post(url, '', param)
+        .then(function(res) {
             var data = res.text;
             return JSON.parse(data);
         })

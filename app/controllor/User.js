@@ -133,9 +133,15 @@ exports.login = function(req, res, next) {
                 return ecard.fetchMsg(user.account, user.password);
             })
             .then(function(msg) {
-                console.log("User.js 113" + msg.msg);
-                req.session.msg = msg.msg;
-                next();
+                console.log(msg+"hahahahah")
+                if(msg.isSuccess){
+                    console.log("User.js 113" + msg.msg);
+                    req.session.msg = msg.msg;
+                    next();
+                }else{
+                    return res.json({success:false,msg:msg.msg})
+                }
+                    
             })
             .catch(function(err) {
                 return res.json({success:false,msg:err.message});
