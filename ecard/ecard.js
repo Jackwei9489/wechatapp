@@ -59,7 +59,7 @@ Ecard.prototype.updateMsg = function(account, password) {
                     },
                     function(err, msg) {})
             }else{
-                if(data.msg === '密钥加密错误'){
+                if(data.msg === '密钥加密错误' || data.msg==='查询密码错误'){
                     var msg = {
                         isSuccess: false,
                         openId: _this.openId,

@@ -1,0 +1,23 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=0")
+		title 密码修改
+		link(href="http://cdn.bootcss.com/weui/0.4.2/style/weui.css",rel="stylesheet")
+		link(href="http://115.28.226.162/style.css",rel="stylesheet")
+	body
+		.login_title
+			span 密码修改
+		form(method="post",action="/ecard/#{openId}/repassword")
+			.weui_cells_title 密码修改
+			.weui_cells.weui_cells_form
+						input(class="weui_input" name="account" type="hidden" value="#{account}")
+				.weui_cell
+					.weui_cell_hd
+						.weui_label
+							img(src="http://115.28.226.162/id.png")
+					.weui_cell_bd.weui_cell_primary
+						input(class="weui_input" name="password" type="password" placeholder="请在此输入新密码" )
+			.weui_btn_area
+				button(class="weui_btn weui_btn_primary" id="button" type="submit" href="javascript:") 确认

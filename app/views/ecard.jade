@@ -1,0 +1,40 @@
+doctype
+html
+head
+	meta(charset="utf-8")
+	meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=0")
+	title 一卡通中心
+	link(href="http://cdn.bootcss.com/weui/0.4.2/style/weui.css",rel="stylesheet")
+	link(href="http://115.28.226.162/stylesheet.css",rel="stylesheet")
+	style.
+
+body
+	.page
+		.hd
+			h1.page_title 一&nbsp;卡&nbsp;通&nbsp;中&nbsp;心
+		.bd
+			.weui_grids
+				a.weui_grid.js_grid(data-id="button" href="/ecard/#{openId}/score")
+					.weui_grid_icon
+						img(src="http://115.28.226.162/img/ecard/icon_nav_article.png")
+					p.weui_grid_label 查成绩
+				a.weui_grid.js_grid(data-id="cell" href="/ecard/#{openId}/balance")
+					.weui_grid_icon
+						img(src="http://115.28.226.162/img/ecard/icon_nav_cell.png")
+					p.weui_grid_label 一卡通余额
+				a.weui_grid.js_grid(data-id="button" href="/ecard/#{openId}/transfer")
+					.weui_grid_icon
+						img(src="http://115.28.226.162/img/ecard/icon_nav_toast.png")
+					p.weui_grid_label 一卡通充值
+				a.weui_grid.js_grid(data-id="button" href="/ecard/#{openId}/building")
+					.weui_grid_icon
+						img(src="http://115.28.226.162/img/ecard/icon_nav_msg.png")
+					p.weui_grid_label 交电费
+				a.weui_grid.js_grid(data-id="button" href="/ecard/#{openId}/grades")
+					.weui_grid_icon
+						img(src="http://115.28.226.162/img/ecard/icon_nav_button.png")
+					p.weui_grid_label 查绩点
+				a.weui_grid.js_grid(data-id="button" href="/ecard/#{openId}/profile")
+					.weui_grid_icon
+						img(src="http://115.28.226.162/img/ecard/icon_nav_actionSheet.png")
+					p.weui_grid_label 个人中心

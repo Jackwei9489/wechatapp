@@ -1,0 +1,26 @@
+doctype
+html
+head
+	meta(charset="utf-8")
+	meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=0")
+	title 一卡通余额
+	link(href="http://cdn.bootcss.com/weui/0.4.2/style/weui.css",rel="stylesheet")
+	link(href="http://115.28.226.162/stylesheet.css",rel="stylesheet")
+body
+	.page
+		.hd
+			.hd_after
+				img(src="http://115.28.226.162/img/ecard/back.png" alt="" onclick="location.href='/ecard/#{openId}/center'")
+			h1.page_title 一卡通余额
+		.bd
+			table.table
+				thead
+					tr
+						th 姓名
+						th 余额
+						th 过渡余额
+				tbody
+					tr
+						td #{obj.name}
+						td #{obj.cardbalance}
+						td #{obj.pretmpbalance}

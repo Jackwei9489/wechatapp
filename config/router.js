@@ -4,7 +4,7 @@ var grades = require('../app/controllor/grades')
 module.exports = function(app){
 	app.get('/ecard/cet46/index',user.index);
 	app.post('/ecard/cet46/query',user.query);
-
+	app.get('/ecard/:openId/center',user.center)
 	app.get('/ecard/:openId/bound',user.ecard);
 	app.post('/ecard/:openId/login',user.login);
 	app.get('/ecard/:openId/isLogin',user.isLogin)
@@ -12,9 +12,12 @@ module.exports = function(app){
 	app.get('/ecard/:openId/profile',user.login,user.getProfile)
 	app.get('/ecard/:openId/balance',user.login,user.getBalance)
 	app.get('/ecard/notice',user.getNotice)
-	app.get('/ecard/:openId/transfer',user.transferIndex)
+	app.get('/ecard/:openId/transfer',user.login,user.transferIndex)
 	app.post('/ecard/transfer',user.login,user.transfer)
 
+	app.get('/ecard/:openId/update',user.updateIndex)
+	app.post('/ecard/:openId/repassword',user.update)
+	app.post('/ecard/:openId/switch',user.switch)
 	app.get('/ecard/:openId/building',user.login,user.building)
 	app.post('/ecard/building',user.getBuilding)
 
