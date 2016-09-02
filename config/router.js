@@ -12,6 +12,7 @@ module.exports = function(app){
 	app.get('/ecard/:openId/profile',user.login,user.getProfile)
 	app.get('/ecard/:openId/balance',user.login,user.getBalance)
 	app.get('/ecard/notice',user.getNotice)
+	app.post('/ecard/:openId/unbound',user.unbound)
 	app.get('/ecard/:openId/transfer',user.login,user.transferIndex)
 	app.post('/ecard/transfer',user.login,user.transfer)
 

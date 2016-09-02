@@ -61,12 +61,26 @@ body
 			.weui_dialog_bd#msg
 			.weui_dialog_ft
 				a.weui_btn_dialog.primary(onclick="$('#popup').hide()") 确定
+	.weui_dialog_confirm#alert(style="display:none")
+		.weui_mask
+		.weui_dialog
+			.weui_dialog_hd
+				strong.weui_dialog_title 解除绑定
+			.weui_dialog_bd 你确定这么做吗？
+			.weui_dialog_ft
+					a.weui_btn_dialog.default(onclick="$('#alert').hide()") 取消
+					a.weui_btn_dialog.primary(onclick="Profile.unbound()") 确定
+	#toast(style="display: none;")
+		.weui_mask_transparent
+		.weui_toast
+			i(class="weui_icon_toast")
+			p(class="weui_toast_content") 解绑成功
 	form(style="display:none" id="confirm" onsubmit="return false;")
 		.weui_dialog_confirm
 			.weui_mask
 			.weui_dialog
 				.weui_dialog_hd
-					strong.weui_dialog_title 切换账号
+					strong.weui_dialog_title 确认
 				.weui_dialog_bd
 					.weui_cell
 						.weui_cell_hd
@@ -133,7 +147,7 @@ body
 	.button
 		a.weui_btn.weui_btn_primary#alter 切&nbsp;换&nbsp;账&nbsp;号
 	.button
-		a.weui_btn.weui_btn_warn(href="" style="margin-top:20px;") 解&nbsp;除&nbsp;绑&nbsp;定
+		a.weui_btn.weui_btn_warn#unbound(style="margin-top:20px;") 解&nbsp;除&nbsp;绑&nbsp;定
 script(src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")
 script(src="http://rawgit.com/progrape/weui.js/master/dist/weui.js")
 br
@@ -145,8 +159,32 @@ script.
 	$('#alter').click(function(){
 		$('#confirm').show();
 	})
+	$('#unbound').click(function(){
+		$('#alert').show();
+	})
+	Profile.unbound = function(){
+		var openId = $('#openId').val();
+		$('#alert').hide();
+		$('#loadingToast').show();
+		$.ajax({
+			type:'POST',
+			url:'/ecard/'+openId+'/unbound',
+			dataType:'json',
+			success:function(result){
+				if(result.success){
+					$('#loadingToast').hide();
+					$('#toast').show();
+					setTimeout(function(){
+						WeixinJSBridge.call('closeWindow');
+					},2000)
+				}else{
+					$('#message').html(result.msg);
+					$('#popup').show();
+				}
+			}
+		})
+	}
 	$('form').submit(function(){
-		
 		var pairs = $('form').serialize().split(/&/gi);
 		var data = {};
 		pairs.forEach(function(pair) {

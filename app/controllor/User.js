@@ -293,6 +293,34 @@ exports.switch = function(req, res) {
 
 }
 
+exports.unbound = function(req,res){
+    var openId = req.params.openId;
+    return User.findOne({
+            openId: openId
+        }).exec()
+        .then(function(result) {
+            if (result) {
+                User.remove({openId:openId},function(err,result){
+                    if(err){
+                        return res.json({ success: false, msg: '解绑失败' });
+                    }
+                    Msg.remove({openId:openId},function(err,result){
+                        if(err){
+                            return res.json({ success: false, msg: '解绑失败' });
+                        }else{
+                            return res.json({ success: true, msg: '解绑成功' });
+                        }
+                    })
+                })
+                    
+
+            } else {
+                return res.json({ success: false, msg: '未绑定' });
+            }
+        })
+
+}
+
 exports.isLogin = function(req, res) {
     var openId = req.params.openId;
     User.findOne({
